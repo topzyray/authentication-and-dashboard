@@ -1,9 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import users from "./data.js";
+import morgan from "morgan";
 
 const app = express();
 const port = 8080;
+
+app.use(morgan("combined"))
 
 app.use(express.static("public"))
 
@@ -17,7 +19,7 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 
-app.post('/login', (req, res) => {
+app.post('/dashboard', (req, res) => {
 
     let email = req.body.email;
     let password = req.body.password;
@@ -27,7 +29,6 @@ app.post('/login', (req, res) => {
         return res.redirect('/');
     } else {
         return res.render('dashboard.ejs', {
-            // authId: authUser.id,
             authUsername: authUser.username,
             authEmail: authUser.email
     }) && res.redirect('/dashboard');
@@ -43,20 +44,12 @@ app.post('/register', (req, res) => {
 
     users.push(newUser)
 
-    console.log(users);
-    console.log(users.length);
-
-    res.render('index.ejs')
-})
-
-app.post('/logout', (req, res) => {
-    res.render('index.ejs')
+    res.render('registerSuccess.ejs')
 })
 
 app.listen(port, () => {
     console.log(`Listening on port ::${port}...`);
 })
-
 
 let users = [
     {

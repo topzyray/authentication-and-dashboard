@@ -1,16 +1,19 @@
 <%- include("./partials/header.js") %>
     
-    <section>
-        <form action="/logout" method="POST">
-            <button type="submit" class="btn btn-primary btn-sm">
+    <section class="container">
+
+        <section class="dashboard_container">
+            <h2>My Dashboard</h2>
+            <a href="/" class="btn btn-primary btn-sm">
                 Log out
-            </button>
-        </form>
+            </a>
+        </section>
 
+        <br>
 
-        <h1>Welcome <%= locals.authUsername %></h1>
+        <h1>Welcome <span><%= locals.authUsername %></span>.</h1>
         
-        <p>Your email address is <%= locals.authEmail %></p>
+        <h3>Your email address is <span><%= locals.authEmail %></span>.</h3>
     </section>
 
 <%- include("./partials/footer.js") %>

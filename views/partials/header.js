@@ -11,4 +11,8 @@
 </head>
 
 <body class="">
+    <header>
+        <h1>WaKode💻</h1>
+    </header>
+
     <main class="">
