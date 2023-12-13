@@ -5,18 +5,19 @@ import morgan from "morgan";
 const app = express();
 const port = 8080;
 
-app.use(morgan("combined"))
-
 app.use(express.static("public"))
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(morgan("combined"))
+
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    res.render('index.ejs');
 })
 
 app.get('/register', (req, res) => {
-    res.render('register.ejs')
+    res.render('register.ejs');
 })
 
 app.post('/dashboard', (req, res) => {
@@ -26,12 +27,16 @@ app.post('/dashboard', (req, res) => {
 
     let authUser = users.find(user => user.email === email && user.password === password);
     if (!authUser) {
-        return res.redirect('/');
+        let errorMessage = `<p style="color: red; text-align: center;"><em>Email or password incorrect.</em></p>`
+        return [
+            res.render('index.ejs',{ error: errorMessage }),
+            res.redirect('/'),            
+        ];
     } else {
         return res.render('dashboard.ejs', {
             authUsername: authUser.username,
             authEmail: authUser.email
-    }) && res.redirect('/dashboard');
+    }); 
 }})
 
 app.post('/register', (req, res) => {
@@ -42,9 +47,20 @@ app.post('/register', (req, res) => {
         password: req.body.password
     }
 
-    users.push(newUser)
-
-    res.render('registerSuccess.ejs')
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].username === newUser.username || users[i].email === newUser.email) {
+            return res.render('register.ejs', {
+                message: `<p style="color: red; text-align: center;"><em>User already exist.</em></p>`
+            });
+        } else {
+            return [
+                users.push(newUser),
+                res.render('registerSuccess.ejs'),
+                console.log("Registered Users: ", users),
+                console.log("Number of Registered Users: ", users.length)
+            ];
+        }
+    }
 })
 
 app.listen(port, () => {
@@ -56,5 +72,5 @@ let users = [
         username: "Tope",
         email: "tope@test.com",
         password: "iloveadeola"
-    },
+    }
 ];

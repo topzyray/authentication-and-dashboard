@@ -2,6 +2,8 @@
 
     <section class="d-flex justify-content-center align-items-center">
         <section class="container">
+            <h2 style="text-align: center;">----Register----</h2>
+            <%- locals.message %>
             <form action="/register" method="POST">
                 <div class="mb-3">
                     <label for="exampleInputUsername" class="form-label">Username:</label>
@@ -16,8 +18,10 @@
                     <label for="exampleInputPassword1" class="form-label">Password:</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-                <a href="/" class="btn btn-primary">Home</a>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <a href="/" class="btn btn-primary">Home</a>
+                </div>
             </form>                
         </section>
     </section>

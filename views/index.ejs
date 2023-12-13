@@ -2,6 +2,8 @@
 
         <section class="d-flex justify-content-center align-items-center">
             <section class="container">
+                <h2 style="text-align: center;">----Login----</h2>
+                <%- locals.error %>
                 <form action="/dashboard" method="POST">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address:</label>
@@ -11,8 +13,10 @@
                         <label for="exampleInputPassword1" class="form-label">Password:</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <a href="/register" class="btn btn-primary">Register</a>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <a href="/register" class="btn btn-primary">Register</a>
+                    </div>
                 </form>
                 
                 <br>
