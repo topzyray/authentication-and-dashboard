@@ -1,0 +1,31 @@
+<%- include("./partials/header.js") %>
+
+    <section class="d-flex justify-content-center align-items-center">
+        <section>
+            <form action="/register" method="POST">
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" name="username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+            <br>
+
+            <div>
+                <a href="/"><button type="submit" class="btn btn-primary">Login</button></a>
+            </div>
+        </section>
+    </section>
+
+<%- include("./partials/footer.js") %>
